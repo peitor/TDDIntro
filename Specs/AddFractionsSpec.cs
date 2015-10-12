@@ -8,6 +8,7 @@ namespace Specs
 
     public class AddFractionsSpec
     {
+        // TODO LIST
         // 0/1 + 0/2 = 0/??   0 nominator addition
         // 1/1 + 1/1 = 2/1    1 denominator addition
         // 1/4 + 2/4 = 3/4    same denominator
@@ -20,6 +21,7 @@ namespace Specs
         // 1/3 + 1/2 = 5/6    denominator expansion
         // 1/0 ??             Error - 0 division
         // 2 1/2 ??           Error - not allowed
+
 
         [ExpectedException(typeof(ArgumentException))]
         [Test]
