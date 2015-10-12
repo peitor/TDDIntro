@@ -8,10 +8,9 @@ namespace Specs
     {
         // 0/1 + 0/2 = 0/??   0 nominator addition
         // 1/1 + 1/1 = 2/1    1 denominator addition
-        // 1/3 + 1/3 = 2/3    simple test 
         // 1/4 + 2/4 = 3/4    same denominator
         // 1/3 + 2/3 = 3/3    result full number
-        // 1/2 + 1/3 = 5/6    same nominator
+        // 1/2 + 1/3 = 5/6    
         // 7/3 + 4/5 = 47/15  complex example, no simplification
         // 3/3 + 4/4 = ??     whole numbers, expressed as fraction
         // 3 + 4 = 7          whole integers  
@@ -20,17 +19,16 @@ namespace Specs
         // 1/0 ??             Error - 0 division
         // 2 1/2 ??           Error - not allowed
 
-
         [Test]
-        public void ZeroPlusZero_0NominatorAddition()
+        public void ShouldReturn0_WhenAdding0()
         {
             // 0/3 + 0/4 = 0
-            Fraction sum = new Fraction(0,3).Add(new Fraction(0,4));
+            Fraction sum = new Fraction(0, 3).Add(new Fraction(0, 4));
             Assert.AreEqual(0, sum.Nominator);
         }
 
         [Test]
-        public void OnePlusOne_WholeNumbers()
+        public void ShouldSum_WhenDenominator1()
         {
             Fraction sum = new Fraction(1, 1).Add(new Fraction(1, 1));
             Assert.AreEqual(2, sum.Nominator);
@@ -38,11 +36,56 @@ namespace Specs
 
 
         [Test]
-        public void Same_Denominator()
+        public void ShouldSum_WhenDenominatorSame()
         {
-            // 1 / 4 + 2 / 4 = 3 / 4    same denominator
-            Assert.Inconclusive();
+            Fraction sum = new Fraction(1, 3).Add(new Fraction(1, 3));
+            Assert.AreEqual(new Fraction(2, 3), sum);
         }
 
+        [Test]
+        public void ShouldSum_WhenDenominatorSame_Complex()
+        {
+            Fraction sum = new Fraction(1, 4).Add(new Fraction(2, 4));
+            Assert.AreEqual(new Fraction(3, 4), sum);
+        }
+
+        [Test]
+        public void ShouldKeepDenominator_WhenDenominatorSame()
+        {
+            Fraction sum = new Fraction(1, 4).Add(new Fraction(2, 4));
+            Assert.AreEqual(4, sum.Denominator);
+        }
+
+        [Test]
+        public void ShouldExpandDenominator_WhenDenominatorsAreNotSame()
+        {
+            Assert.Inconclusive();
+            // 1 / 2 + 1 / 3 = 5 / 6
+            Fraction sum = new Fraction(1, 2).Add(new Fraction(1, 3));
+            Assert.AreEqual(new Fraction(5, 6), sum);
+        }
+
+
+        [Test]
+        public void ToString_NiceString()
+        {
+            Assert.Inconclusive();
+            Assert.AreEqual("2 / 5", new Fraction(2, 5).ToString());
+        }
+
+
+        [Test]
+        public void Should_ReturnDifferentHashCode_When_ProvidingDifferentFractions()
+        {
+            Assert.AreNotEqual(new Fraction(1, 2), new Fraction(1, 3));
+            Assert.AreNotEqual(new Fraction(1, 2), new Fraction(2, 2));
+        }
+
+        [Test]
+        public void Should_ReturnSameHashCode_When_ProvidingSameFractions()
+        {
+            Assert.AreEqual(new Fraction(1, 2), new Fraction(1, 2));
+            Assert.AreEqual(new Fraction(2, 3), new Fraction(2, 3));
+        }
     }
 }
