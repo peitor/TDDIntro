@@ -7,6 +7,7 @@ namespace Specs
     public class AddFractionsSpec
     {
         // 0/1 + 0/2 = 0/??   0 nominator addition
+        // 1/1 + 1/1 = 2/1    1 denominator addition
         // 1/3 + 1/3 = 2/3    simple test 
         // 1/4 + 2/4 = 3/4    same denominator
         // 1/3 + 2/3 = 3/3    result full number
@@ -26,6 +27,13 @@ namespace Specs
             // 0/3 + 0/4 = 0
             Fraction sum = new Fraction(0,3).Add(new Fraction(0,4));
             Assert.AreEqual(0, sum.Nominator);
+        }
+
+        [Test]
+        public void OnePlusOne_WholeNumbers()
+        {
+            Fraction sum = new Fraction(1, 1).Add(new Fraction(1, 1));
+            Assert.AreEqual(2, sum.Nominator);
         }
 
 

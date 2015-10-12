@@ -4,15 +4,15 @@ namespace FractionsLibrary
     {
         public Fraction(int n, int d)
         {
-            
+            this.Nominator = n;
 
         }
 
-        public double Nominator { get; set; }
+        public int Nominator { get; set; }
 
         public Fraction Add(Fraction fraction)
         {
-            return new Fraction(0,0);
+            return new Fraction(this.Nominator + fraction.Nominator,0);
         }
     }
 }
