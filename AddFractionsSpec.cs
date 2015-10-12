@@ -1,5 +1,7 @@
 namespace Specs
 {
+    using FractionsLibrary;
+
     using Xunit;
 
     public class AddFractionsSpec

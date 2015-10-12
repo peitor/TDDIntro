@@ -57,15 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddFractionsSpec.cs" />
-    <Compile Include="Fraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="2nd-empty\" />
-    <Folder Include="test-empty-folder\" />
+    <ProjectReference Include="..\FractionsLibrary\FractionsLibrary.csproj">
+      <Project>{62478218-25DA-4D2B-85F7-30C88EBB4BAD}</Project>
+      <Name>FractionsLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
