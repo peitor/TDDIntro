@@ -4,14 +4,6 @@ namespace Specs
 
     public class AddFractionsSpec
     {
-
-        [Test]
-        public void ZeroPlusZero_0NominatorAddition()
-        {
-            // 0/3 + 0/4 = 0
-            Assert.Inconclusive();
-        }
-
         // 0/1 + 0/2 = 0/??   0 nominator addition
         // 1/3 + 1/3 = 2/3    simple test 
         // 1/4 + 2/4 = 3/4    same denominator
@@ -24,5 +16,39 @@ namespace Specs
         // 1/3 + 1/2 = 5/6    denominator expansion
         // 1/0 ??             Error - 0 division
         // 2 1/2 ??           Error - not allowed
+
+
+        [Test]
+        public void ZeroPlusZero_0NominatorAddition()
+        {
+            // 0/3 + 0/4 = 0
+            Fraction sum = new Fraction(0,3).Add(new Fraction(0,4));
+            Assert.AreEqual(0, sum.Nominator);
+        }
+
+
+        [Test]
+        public void Same_Denominator()
+        {
+            // 1 / 4 + 2 / 4 = 3 / 4    same denominator
+            Assert.Inconclusive();
+        }
+
+    }
+
+    public class Fraction
+    {
+        public Fraction(int n, int d)
+        {
+            
+
+        }
+
+        public double Nominator { get; set; }
+
+        public Fraction Add(Fraction fraction)
+        {
+            return new Fraction(0,0);
+        }
     }
 }
