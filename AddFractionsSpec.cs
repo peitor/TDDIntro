@@ -1,5 +1,7 @@
 namespace Specs
 {
+    using FractionsLibrary;
+
     using NUnit.Framework;
 
     public class AddFractionsSpec
@@ -34,21 +36,5 @@ namespace Specs
             Assert.Inconclusive();
         }
 
-    }
-
-    public class Fraction
-    {
-        public Fraction(int n, int d)
-        {
-            
-
-        }
-
-        public double Nominator { get; set; }
-
-        public Fraction Add(Fraction fraction)
-        {
-            return new Fraction(0,0);
-        }
     }
 }
