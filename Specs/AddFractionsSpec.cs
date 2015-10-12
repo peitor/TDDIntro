@@ -1,5 +1,7 @@
 namespace Specs
 {
+    using System;
+
     using FractionsLibrary;
 
     using NUnit.Framework;
@@ -19,11 +21,18 @@ namespace Specs
         // 1/0 ??             Error - 0 division
         // 2 1/2 ??           Error - not allowed
 
+        [ExpectedException(typeof(ArgumentException))]
+        [Test]
+        public void ShouldThrow_WhenDenominator0()
+        {
+            new Fraction(1, 0);
+        }
+
         [Test]
         public void ShouldReturn0_WhenAdding0()
         {
             // 0/3 + 0/4 = 0
-            Fraction sum = new Fraction(0, 3).Add(new Fraction(0, 4));
+            Fraction sum = new Fraction(0, 1).Add(new Fraction(0, 1));
             Assert.AreEqual(0, sum.Nominator);
         }
 
@@ -57,14 +66,69 @@ namespace Specs
         }
 
         [Test]
+        public void ShouldExpandDenominator_WhenDenominatorsAreNotSame_Simple2()
+        {
+            Fraction sum = new Fraction(1, 6).Add(new Fraction(1, 2));
+            Assert.AreEqual(new Fraction(4, 6), sum);
+        }
+
+        [Test]
         public void ShouldExpandDenominator_WhenDenominatorsAreNotSame()
         {
-            Assert.Inconclusive();
+            // 1 / 2 + 1 / 6 = 4 / 6
+            var sum = new Fraction(1, 2).Add(new Fraction(1, 6));
+            Assert.AreEqual(new Fraction(4, 6), sum);
+        }
+
+        [Test]
+        public void ShouldExpandDenominator_WhenDenominatorsAreNotSame_NoEasyDenominator()
+        {
             // 1 / 2 + 1 / 3 = 5 / 6
             Fraction sum = new Fraction(1, 2).Add(new Fraction(1, 3));
             Assert.AreEqual(new Fraction(5, 6), sum);
         }
 
+
+        [Test]
+        public void Should_ReturnNumber_When_PassingComplexFractions()
+        {
+            // 7/3 + 4/5 = 47/15  complex example, no simplification
+            Fraction sum = new Fraction(7, 3).Add(new Fraction(4, 5));
+            Assert.AreEqual(new Fraction(47, 15), sum);
+        }
+
+        [Test]
+        public void Should_ReturnSimplified_WhenPossible()
+        {
+            // 3/3 + 4/4 = 2/1 and not 24/12     whole numbers, expressed as fraction
+            Fraction sum = new Fraction(3, 3).Add(new Fraction(4, 4));
+            Assert.AreEqual(new Fraction(2, 1), sum);
+
+        }
+
+        [Test]
+        public void Should_Simplify_When_LargerNominator()
+        {
+            var f = new Fraction(8, 4);
+            Assert.AreEqual(new Fraction(2,1 ), f);
+        }
+
+
+        [Test]
+        public void Should_Simplify_When_LargerDenominator()
+        {
+            Assert.Inconclusive();
+            var f = new Fraction(4, 8);
+            Assert.AreEqual(new Fraction(1, 2), f);
+        }
+
+        [Test]
+        public void Should_Simplify_When_PassingPotential()
+        {
+            Assert.Inconclusive();
+            var f = new Fraction(4, 6);
+            Assert.AreEqual(new Fraction(2, 3), f);
+        }
 
         [Test]
         public void ToString_NiceString()
