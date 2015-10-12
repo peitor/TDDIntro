@@ -1,20 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Specs
+﻿namespace Specs
 {
     using Xunit;
 
-    public class Class1
+    public class AddFractionsSpec
     {
-
         [Fact]
-        public void Should_do_When_doing()
+        public void ZeroPlusZero()
         {
-            Assert.True(true);
+            Fraction sum = new Fraction(0).Plus(new Fraction(0));
+            Assert.Equal(0, sum.IntegerValue);
+        }
+    }
+
+    public class Fraction
+    {
+        public Fraction(int init)
+        {
+            
+        }
+
+        public int IntegerValue { get; set; }
+
+        public Fraction Plus(Fraction fraction)
+        {
+            return new Fraction(0);
         }
     }
 }
