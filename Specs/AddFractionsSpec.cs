@@ -100,7 +100,7 @@ namespace Specs
         }
 
         [Test]
-        public void Should_ReturnSimplified_WhenPossible()
+        public void Should_ReturnReduced_WhenPossible()
         {
             // 3/3 + 4/4 = 2/1 and not 24/12     whole numbers, expressed as fraction
             Fraction sum = new Fraction(3, 3).Add(new Fraction(4, 4));
@@ -109,15 +109,34 @@ namespace Specs
         }
 
         [Test]
-        public void Should_Simplify_When_LargerNominator()
+        public void Should_Reduce_When_LargerNominator()
         {
             var f = new Fraction(8, 4);
             Assert.AreEqual(new Fraction(2,1 ), f);
         }
 
+        [Test]
+        public void NegativeNominators_Should()
+        {
+            Fraction sum = new Fraction(-1, 1).Add(new Fraction(1, 1));
+            Assert.AreEqual(new Fraction(0, 1), sum);
+        }
 
         [Test]
-        public void Should_Simplify_When_LargerDenominator()
+        public void NegativeNominators_ShouldReturnSum()
+        {
+            Fraction sum = new Fraction(-1, 3).Add(new Fraction(1, 4));
+            Assert.AreEqual(new Fraction(-1, 12), sum);
+        }
+        [Test]
+        public void NegativeNominators_ShouldReturnSum2()
+        {
+            Fraction sum = new Fraction(1, 3).Add(new Fraction(-1, 4));
+            Assert.AreEqual(new Fraction(1, 12), sum);
+        }
+
+        [Test]
+        public void Should_Reduce_When_LargerDenominator()
         {
             Assert.Inconclusive();
             var f = new Fraction(4, 8);
@@ -125,7 +144,7 @@ namespace Specs
         }
 
         [Test]
-        public void Should_Simplify_When_PassingPotential()
+        public void Should_Reduce_When_PassingPotential()
         {
             Assert.Inconclusive();
             var f = new Fraction(4, 6);
