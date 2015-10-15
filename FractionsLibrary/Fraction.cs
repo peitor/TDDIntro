@@ -13,17 +13,28 @@ namespace FractionsLibrary
 
             if (n % d == 0)
             {
-                this.Nominator = n / d;
+                this.Numerator = n / d;
                 this.Denominator = 1;
+                return;
             }
-            else
+
+            for (var i = d; i >= 2; i--)
             {
-                this.Nominator = n;
-                this.Denominator = d;
+                if (n % i == 0 && d % i == 0)
+                {
+                    this.Numerator = n / i;
+                    this.Denominator = d / i;
+                    return;
+                }
             }
+
+
+            this.Numerator = n;
+            this.Denominator = d;
+
         }
 
-        public int Nominator { get; }
+        public int Numerator { get; }
 
         public int Denominator { get; }
 
@@ -31,32 +42,32 @@ namespace FractionsLibrary
         {
             if (this.Denominator == fraction.Denominator)
             {
-                return new Fraction(this.Nominator + fraction.Nominator, fraction.Denominator);
+                return new Fraction(this.Numerator + fraction.Numerator, fraction.Denominator);
             }
 
-            if (this.Denominator % fraction.Denominator == 0
-                ||
-                fraction.Denominator % this.Denominator == 0)
-            {
-                if (this.Denominator > fraction.Denominator)
-                {
-                    return this.Add(new Fraction(fraction.Nominator * (this.Denominator / fraction.Denominator), this.Denominator));
-                }
-                else
-                {
-                    return fraction.Add(new Fraction(this.Nominator * (fraction.Denominator / this.Denominator), fraction.Denominator));
-                }
-            }
+            //if (this.Denominator % fraction.Denominator == 0
+            //    ||
+            //    fraction.Denominator % this.Denominator == 0)
+            //{
+            //    if (this.Denominator > fraction.Denominator)
+            //    {
+            //        return this.Add(new Fraction(fraction.Numerator * (this.Denominator / fraction.Denominator), this.Denominator));
+            //    }
+            //    else
+            //    {
+            //        return fraction.Add(new Fraction(this.Numerator * (fraction.Denominator / this.Denominator), fraction.Denominator));
+            //    }
+            //}
 
-            return new Fraction(this.Nominator * fraction.Denominator
-                + fraction.Nominator * this.Denominator,
+            return new Fraction(this.Numerator * fraction.Denominator
+                + fraction.Numerator * this.Denominator,
                 this.Denominator * fraction.Denominator);
 
         }
 
         public override string ToString()
         {
-            return Nominator + "/" + Denominator;
+            return this.Numerator + "/" + Denominator;
         }
 
         public override bool Equals(object obj)
@@ -69,14 +80,14 @@ namespace FractionsLibrary
             Fraction input = obj as Fraction;
 
             return input != null
-                && this.Nominator == input.Nominator
+                && this.Numerator == input.Numerator
                 && this.Denominator == input.Denominator;
 
         }
 
         public override int GetHashCode()
         {
-            return this.Nominator ^ this.Denominator;
+            return this.Numerator ^ this.Denominator;
         }
     }
 }
