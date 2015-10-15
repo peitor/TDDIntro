@@ -33,16 +33,15 @@ namespace Specs
         [Test]
         public void ShouldReturn0_WhenAdding0()
         {
-            // 0/3 + 0/4 = 0
             Fraction sum = new Fraction(0, 1).Add(new Fraction(0, 1));
-            Assert.AreEqual(0, sum.Nominator);
+            Assert.AreEqual(0, sum.Numerator);
         }
 
         [Test]
         public void ShouldSum_WhenDenominator1()
         {
             Fraction sum = new Fraction(1, 1).Add(new Fraction(1, 1));
-            Assert.AreEqual(2, sum.Nominator);
+            Assert.AreEqual(2, sum.Numerator);
         }
 
 
@@ -71,15 +70,15 @@ namespace Specs
         public void ShouldExpandDenominator_WhenDenominatorsAreNotSame_Simple2()
         {
             Fraction sum = new Fraction(1, 6).Add(new Fraction(1, 2));
-            Assert.AreEqual(new Fraction(4, 6), sum);
+            Assert.AreEqual(new Fraction(8, 12), sum);
+            Assert.AreEqual(new Fraction(2, 3), sum);
         }
 
         [Test]
         public void ShouldExpandDenominator_WhenDenominatorsAreNotSame()
         {
-            // 1 / 2 + 1 / 6 = 4 / 6
             var sum = new Fraction(1, 2).Add(new Fraction(1, 6));
-            Assert.AreEqual(new Fraction(4, 6), sum);
+            Assert.AreEqual(new Fraction(2,3), sum);
         }
 
         [Test]
@@ -128,11 +127,27 @@ namespace Specs
             Fraction sum = new Fraction(-1, 3).Add(new Fraction(1, 4));
             Assert.AreEqual(new Fraction(-1, 12), sum);
         }
+
         [Test]
         public void NegativeNominators_ShouldReturnSum2()
         {
             Fraction sum = new Fraction(1, 3).Add(new Fraction(-1, 4));
             Assert.AreEqual(new Fraction(1, 12), sum);
+        }
+
+        [Test]
+        [Ignore("SLOW!!!!!!!!!!!!!")]
+        public void BLOWSUP()
+        {
+            Fraction sum = new Fraction(1, int.MaxValue-1).Add(new Fraction(1, int.MaxValue - 2));
+            // BLOW UP
+        }
+
+        [Test]
+        public void Fractions_ShouldBeDifferent___()
+        {
+            Assert.Inconclusive();
+            Assert.AreNotEqual(new Fraction(8, 12), new Fraction(2, 3));
         }
 
         [Test]
