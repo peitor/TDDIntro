@@ -9,7 +9,7 @@ namespace Specs
     public class AddFractionsSpec
     {
         // TODO LIST
-        // 0/1 + 0/2 = 0/??   0 nominator addition
+        // 0/1 + 0/2 = 0/??   0 numerator addition, what is displayed??
         // 1/1 + 1/1 = 2/1    1 denominator addition
         // 1/4 + 2/4 = 3/4    same denominator
         // 1/3 + 2/3 = 3/3    result full number
@@ -108,28 +108,28 @@ namespace Specs
         }
 
         [Test]
-        public void Should_Reduce_When_LargerNominator()
+        public void Should_Reduce_When_LargerNumerator()
         {
             var f = new Fraction(8, 4);
             Assert.AreEqual(new Fraction(2,1 ), f);
         }
 
         [Test]
-        public void NegativeNominators_Should()
+        public void NegativeNumerators_Should()
         {
             Fraction sum = new Fraction(-1, 1).Add(new Fraction(1, 1));
             Assert.AreEqual(new Fraction(0, 1), sum);
         }
 
         [Test]
-        public void NegativeNominators_ShouldReturnSum()
+        public void NegativeNumerators_ShouldReturnSum()
         {
             Fraction sum = new Fraction(-1, 3).Add(new Fraction(1, 4));
             Assert.AreEqual(new Fraction(-1, 12), sum);
         }
 
         [Test]
-        public void NegativeNominators_ShouldReturnSum2()
+        public void NegativeNumerators_ShouldReturnSum2()
         {
             Fraction sum = new Fraction(1, 3).Add(new Fraction(-1, 4));
             Assert.AreEqual(new Fraction(1, 12), sum);
