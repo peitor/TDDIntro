@@ -21,6 +21,7 @@ namespace Specs
         // 1/3 + 1/2 = 5/6    denominator expansion
         // 1/0 ??             Error - 0 division
         // 2 1/2 ??           Error - not allowed
+        // largeNr/largeNr  +  largeNr+1/largeNr  --> causes overflow, but could be calculated if optimization in place
 
 
         [ExpectedException(typeof(ArgumentException))]
